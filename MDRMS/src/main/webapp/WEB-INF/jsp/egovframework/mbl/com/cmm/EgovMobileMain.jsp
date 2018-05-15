@@ -22,7 +22,7 @@
 </head>  
  
 <body>
-<!-- 모바일 페이지 start -->
+<!-- 모바일 페이지 start test -->
 
 <div data-role="page" >
 
