@@ -36,7 +36,7 @@
 <div data-role="content">
 <p></p>
 <br>
-	<a href="${pageContext.request.contextPath}/cop/smt/dsm/EgovDiaryManageList.mdo" rel="external"data-role="button" >일보 관리</a>
+	<a href="${pageContext.request.contextPath}/cop/smt/dsm/EgovDiaryManageList.mdo" rel="external"data-role="button" >일보 111관리</a>
 <%-- 	<a href="${pageContext.request.contextPath}/cop/smt/sim/EgovIndvdlSchdulManageDailyList.mdo" rel="external"data-role="button" >일정관리</a> --%>
 	
 <!-- 	<div data-role="collapsible-set"> -->
