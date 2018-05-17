@@ -353,6 +353,7 @@ public class EgovOpenApiController {
     public ModelAndView selectWeather() throws Exception {
         ModelAndView modelAndView = new ModelAndView("jsonView");
 
+        
 //        SurfaceServiceImplService_Impl impl = new SurfaceServiceImplService_Impl();
 //        SurfaceServiceImpl_Stub service = (SurfaceServiceImpl_Stub)impl.getSurfaceService();
 //
