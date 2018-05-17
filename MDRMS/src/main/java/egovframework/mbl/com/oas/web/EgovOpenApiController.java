@@ -353,59 +353,59 @@ public class EgovOpenApiController {
     public ModelAndView selectWeather() throws Exception {
         ModelAndView modelAndView = new ModelAndView("jsonView");
 
-        SurfaceServiceImplService_Impl impl = new SurfaceServiceImplService_Impl();
-        SurfaceServiceImpl_Stub service = (SurfaceServiceImpl_Stub)impl.getSurfaceService();
-
-        // 인증 ID, PW 취득
-        String serviceId= EgovProperties.getProperty(EgovProperties.getPathProperty("Globals.OASConfPath"), "kmaWeatherInquiryId");
-        String servicePw = EgovProperties.getProperty(EgovProperties.getPathProperty("Globals.OASConfPath"), "kmaWeatherInquiryPassword");
-
-        // 인증 ID, PW 설정
-        service._setProperty(javax.xml.rpc.Stub.USERNAME_PROPERTY, serviceId);
-        service._setProperty(javax.xml.rpc.Stub.PASSWORD_PROPERTY, servicePw);
-
-        // 지역코드 취득
-        ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
-        comDefaultCodeVO.setCodeId("COM086");
-        List<CmmnDetailCode> stationId = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
-
-        CurrentWeatherModel weatherModel = null;
-        List<CurrentWeatherModel> weatherInfo = new ArrayList<CurrentWeatherModel>();
-
-        // 조회 내용을 저장하기 위한 임시 변수
-        StringBuffer weather = new StringBuffer();
-
-        // 날씨 정보 취득
-        for (int i=0; i < stationId.size(); i++) {
-            weatherModel = service.getCurrentWeather(stationId.get(i).getCode().toString(), null);
-            weatherInfo.add(weatherModel);
-
-            // 날씨 조회 내용을 날씨 이력 테이블에 insert 하기 위한 내용 구성
-            weather.append("지역명 : " + stationId.get(i).getCodeNm());
-            weather.append(" / ");
-            weather.append("날씨 : " + weatherModel.getCurrent_weather());
-            weather.append(" / ");
-            weather.append("온도 : " + weatherModel.getTemperature() + "˚C");
-            weather.append(" / ");
-            weather.append("전운량 : " + weatherModel.getCloud_amount());
-            weather.append(" / ");
-            weather.append("현상번호 : " + weatherModel.getWeather_status_number());
-            weather.append("<br>");
-        }
-
-        // 검색 이력 Insert
-        OpenApi openApi = new OpenApi();
-        LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
-
-        openApi.setMberId(user.getId());
-        openApi.setOpenApiSvcNm("날씨");
-        openApi.setOpenApiProvdInsttNm("기상청");
-        openApi.setOpenApiSvcCn(weather.toString());
-        egovOpenApiService.insertOpenApiInquiryHistory(openApi);
-
-        modelAndView.addObject("weatherInfo", weatherInfo);
-        modelAndView.addObject("stationId", stationId);
-        modelAndView.addObject("count", stationId.size());
+//        SurfaceServiceImplService_Impl impl = new SurfaceServiceImplService_Impl();
+//        SurfaceServiceImpl_Stub service = (SurfaceServiceImpl_Stub)impl.getSurfaceService();
+//
+//        // 인증 ID, PW 취득
+//        String serviceId= EgovProperties.getProperty(EgovProperties.getPathProperty("Globals.OASConfPath"), "kmaWeatherInquiryId");
+//        String servicePw = EgovProperties.getProperty(EgovProperties.getPathProperty("Globals.OASConfPath"), "kmaWeatherInquiryPassword");
+//
+//        // 인증 ID, PW 설정
+//        service._setProperty(javax.xml.rpc.Stub.USERNAME_PROPERTY, serviceId);
+//        service._setProperty(javax.xml.rpc.Stub.PASSWORD_PROPERTY, servicePw);
+//
+//        // 지역코드 취득
+//        ComDefaultCodeVO comDefaultCodeVO = new ComDefaultCodeVO();
+//        comDefaultCodeVO.setCodeId("COM086");
+//        List<CmmnDetailCode> stationId = egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
+//
+//        CurrentWeatherModel weatherModel = null;
+//        List<CurrentWeatherModel> weatherInfo = new ArrayList<CurrentWeatherModel>();
+//
+//        // 조회 내용을 저장하기 위한 임시 변수
+//        StringBuffer weather = new StringBuffer();
+//
+//        // 날씨 정보 취득
+//        for (int i=0; i < stationId.size(); i++) {
+//            weatherModel = service.getCurrentWeather(stationId.get(i).getCode().toString(), null);
+//            weatherInfo.add(weatherModel);
+//
+//            // 날씨 조회 내용을 날씨 이력 테이블에 insert 하기 위한 내용 구성
+//            weather.append("지역명 : " + stationId.get(i).getCodeNm());
+//            weather.append(" / ");
+//            weather.append("날씨 : " + weatherModel.getCurrent_weather());
+//            weather.append(" / ");
+//            weather.append("온도 : " + weatherModel.getTemperature() + "˚C");
+//            weather.append(" / ");
+//            weather.append("전운량 : " + weatherModel.getCloud_amount());
+//            weather.append(" / ");
+//            weather.append("현상번호 : " + weatherModel.getWeather_status_number());
+//            weather.append("<br>");
+//        }
+//
+//        // 검색 이력 Insert
+//        OpenApi openApi = new OpenApi();
+//        LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+//
+//        openApi.setMberId(user.getId());
+//        openApi.setOpenApiSvcNm("날씨");
+//        openApi.setOpenApiProvdInsttNm("기상청");
+//        openApi.setOpenApiSvcCn(weather.toString());
+//        egovOpenApiService.insertOpenApiInquiryHistory(openApi);
+//
+//        modelAndView.addObject("weatherInfo", weatherInfo);
+//        modelAndView.addObject("stationId", stationId);
+//        modelAndView.addObject("count", stationId.size());
 
         return modelAndView;
     }
